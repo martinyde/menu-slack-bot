@@ -74,9 +74,10 @@ else {
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
-    print '-----test----';
-    slack('test', 'mytest');
   }
+
+  print '-----test----';
+  slack('test', 'mytest');
 }
 
 // (string) $message - message to be passed to Slack
@@ -91,7 +92,7 @@ function slack($message, $room = "engineering", $icon = ":longbox:") {
     ));
 
   // You can get your webhook endpoint from your Slack settings
-  $ch = curl_init("WEBHOOK ENDPOINT GOES HERE");
+  $ch = curl_init("XJYNcqdbgelpmZNFZxxLXGOV");
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
   curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
