@@ -39,14 +39,14 @@ if($token != 'XJYNcqdbgelpmZNFZxxLXGOV'){ #replace this with the token from your
 # You can keep this one, or update it to something that makes more sense for you
 //$user_agent = "IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)";
 $user_agent = "Dokk1-Menu/1.0 (Martinyde; https://github.com/martinyde/menu-slack-bot)";
-echo '1';
+
 # We're just taking the text exactly as it's typed by the user. If it's not a valid domain, isitup.org will respond with a `3`.
 # We want to get the JSON version back (you can also get plain text).
 $url_to_check = "http://dokk1.mikkelricky.dk/menu.json";
-echo '2';
+
 # Set up cURL 
 $ch = curl_init($url_to_check);
-echo $ch;
+echo '<pre>' . $ch - '</pre>';
 # Set up options for cURL 
 # We want to get the value back from our query 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
