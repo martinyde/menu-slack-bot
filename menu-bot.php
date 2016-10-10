@@ -61,7 +61,7 @@ curl_close($ch);
 # Decode the JSON array sent back by isitup.org
 $response_array = json_decode($ch_response,true);
 
-echo '<pre>' . $response_array . '</pre>';
+print_r($response_array);
 
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
