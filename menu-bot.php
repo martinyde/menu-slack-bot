@@ -81,7 +81,6 @@ else {
     $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://';
   }
 
-  print_r($fields);
   slack($fields, $daily_img);
 }
 
