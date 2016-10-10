@@ -72,7 +72,7 @@ if($ch_response === FALSE){
 }
 else {
   $fields = array();
-
+  $current_day = date('D', time());
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
@@ -80,16 +80,17 @@ else {
       'title' => $day,
       'value' => 'test'
     );
+    $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://';
   }
 
-  slack($fields);
+  slack($fields, $daily_img);
 }
 
 // (string) $message - message to be passed to Slack
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack($fields) {
+function slack($fields, $daily_img) {
   $data = "payload=" . json_encode(array(
-      'text'          =>  '*Ugens menu* -- Tank op på http://tankop5172.fazer.dk/',
+      'text'          =>  '*Ugens menu*',
       'icon_emoji'    =>  ':knife_fork_plate:',
       'username' => 'Dokk1 Kantinen',
       'mrkdwn' => true,
@@ -98,6 +99,9 @@ function slack($fields) {
         'color' => '#36a64f',
       ),
       'fields' => $fields,
+      'thumb_url' => $daily_img,
+      'footer' => 'Tank op på http://tankop5172.fazer.dk/',
+      'ts' => date(),
     ));
     /*
     {
