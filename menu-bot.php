@@ -78,10 +78,10 @@ else {
     $day = date('D', $timestamp);
     $fields[] = array(
       'title' => $day,
-      'value' => '*' . $value['name'] . '*\n' . $value['details'],
+      'value' => $value['name'] . ' ' . $value['details'],
       'short' => false,
     );
-    $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://';
+    $daily_img = ($day === $current_day) ? $value['images']['0'] : 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
   }
 
   slack($fields, $daily_img);
