@@ -96,10 +96,6 @@ function slack($fields, $daily_img) {
         'fallback' => 'Ugens menu',
         'color' => '#36a64f',
       ),
-      'fields' => $fields,
-      'thumb_url' => $daily_img,
-      'footer' => 'Tank op på http://tankop5172.fazer.dk/',
-      'ts' => time(),
     ));
     /*
     {
