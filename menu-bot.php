@@ -92,7 +92,7 @@ function slack($message, $room = "engineering", $icon = ":longbox:") {
     ));
 
   // You can get your webhook endpoint from your Slack settings
-  $ch = curl_init("XJYNcqdbgelpmZNFZxxLXGOV");
+  $ch = curl_init("https://hooks.slack.com/services/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");
   curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
   curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
