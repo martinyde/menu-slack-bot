@@ -74,8 +74,7 @@ else{
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
-    print $day . ': ' . $value['name'];
-    print '--';
+    print $day . ': ' . $value['name'] . '\n';
   }
 }
 
