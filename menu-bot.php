@@ -76,7 +76,8 @@ else {
     $day = date('D', $timestamp);
     $fields[] = array(
       'title' => $day,
-      'value' => 'test'
+      'value' => 'test',
+      'short' => 'false',
     );
     $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://';
   }
@@ -95,10 +96,11 @@ function slack($fields, $daily_img) {
       'attachments' => array (
         'fallback' => 'Ugens menu',
         'color' => '#36a64f',
+        'fields' => $fields,
+        'thumb_url' => $daily_img,
+        'footer' => 'Tank op på http://tankop5172.fazer.dk/',
+        'ts' => time(),
       ),
-      'thumb_url' => $daily_img,
-      'footer' => 'Tank op på http://tankop5172.fazer.dk/',
-      'ts' => time(),
     ));
     /*
     {
