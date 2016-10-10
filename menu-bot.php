@@ -78,8 +78,8 @@ else {
     $day = date('D', $timestamp);
     $fields[] = array(
       'title' => $day,
-      'value' => 'test',
-      'short' => 'false',
+      'value' => '*' . $value['name'] . '*\n' . $value['details'],
+      'short' => false,
     );
     $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://';
   }
