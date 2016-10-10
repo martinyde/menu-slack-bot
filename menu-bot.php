@@ -89,15 +89,14 @@ else {
 
 // (string) $message - message to be passed to Slack
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack($fields, $daily_img) {
+function slack($fields, $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png') {
   $data = "payload=" . json_encode(array(
       'text'          =>  '*Ugens menu*',
       'icon_emoji'    =>  ':knife_fork_plate:',
       'username' => 'Dokk1 Kantinen',
       'mrkdwn' => true,
       'attachments' => array(array (
-        'title' => 'lorem',
-        'pretext' => 'lorem',
+        'title' => 'Ugens menu på Dokk1',
         'fallback' => 'Ugens menu',
         'color' => '#36a64f',
         'fields' => $fields,
@@ -106,32 +105,6 @@ function slack($fields, $daily_img) {
         'ts' => time(),
       )),
     ));
-    /*
-    {
-          "fallback": "Required plain-text summary of the attachment.",
-            "color": "#36a64f",
-            "pretext": "Optional text that appears above the attachment block",
-            "author_name": "Bobby Tables",
-            "author_link": "http://flickr.com/bobby/",
-            "author_icon": "http://flickr.com/icons/bobby.jpg",
-            "title": "Slack API Documentation",
-            "title_link": "https://api.slack.com/",
-            "text": "Optional text that appears within the attachment",
-            "fields": [
-                {
-                  "title": "Priority",
-                    "value": "High",
-                    "short": false
-                }
-            ],
-            "image_url": "http://my-website.com/path/to/image.jpg",
-            "thumb_url": "http://example.com/path/to/thumb.png",
-            "footer": "Slack API",
-            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
-            "ts": 123456789
-        }
-    ]*/
-
 
   // You can get your webhook endpoint from your Slack settings
   $ch = curl_init("https://hooks.slack.com/services/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");
