@@ -101,7 +101,7 @@ function slack($fields, $daily_img) {
       'fields' => $fields,
       'thumb_url' => $daily_img,
       'footer' => 'Tank op på http://tankop5172.fazer.dk/',
-      'ts' => date(),
+      'ts' => time(),
     ));
     /*
     {
