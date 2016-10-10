@@ -74,10 +74,8 @@ else{
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
-    print '*' . $day . ': ' . $value['name'] . '*';
+    echo ':test*' . $day . ': ' . $value['name'] . '*';
   }
 }
 
 # Send the reply back to the user. 
-//echo $reply;
-echo '123';
