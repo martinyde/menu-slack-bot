@@ -46,7 +46,7 @@ $url_to_check = "http://dokk1.mikkelricky.dk/menu.json";
 
 # Set up cURL 
 $ch = curl_init($url_to_check);
-echo '<pre>' . $ch - '</pre>';
+echo '<pre>' . $ch . '</pre>';
 # Set up options for cURL 
 # We want to get the value back from our query 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
