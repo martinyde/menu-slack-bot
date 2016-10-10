@@ -93,16 +93,16 @@ function slack($fields, $daily_img) {
       'icon_emoji'    =>  ':knife_fork_plate:',
       'username' => 'Dokk1 Kantinen',
       'mrkdwn' => true,
-      'attachments' => array (
+      'attachments' => array(array (
         'title' => 'lorem',
         'pretext' => 'lorem',
         'fallback' => 'Ugens menu',
         'color' => '#36a64f',
-        'fields' => $fields,
+        'fields' => array($fields),
         'thumb_url' => $daily_img,
         'footer' => 'Tank op på http://tankop5172.fazer.dk/',
         'ts' => time(),
-      ),
+      )),
     ));
     /*
     {
