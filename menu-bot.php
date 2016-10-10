@@ -35,7 +35,7 @@ if($token != 'XJYNcqdbgelpmZNFZxxLXGOV'){ #replace this with the token from your
   echo $msg;
 }
 
-
+echo '123';
 # isitup.org doesn't require you to use API keys, but they do require that any automated script send in a user agent string.
 # You can keep this one, or update it to something that makes more sense for you
 //$user_agent = "IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)";
@@ -83,4 +83,5 @@ if($ch_response === FALSE){
 }
 
 # Send the reply back to the user. 
-echo $reply;
+//echo $reply;
+echo '123';
