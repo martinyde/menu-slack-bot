@@ -94,6 +94,8 @@ function slack($fields, $daily_img) {
       'username' => 'Dokk1 Kantinen',
       'mrkdwn' => true,
       'attachments' => array (
+        'title' => 'lorem',
+        'pretext' => 'lorem',
         'fallback' => 'Ugens menu',
         'color' => '#36a64f',
         'fields' => $fields,
