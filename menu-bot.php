@@ -74,17 +74,19 @@ else {
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
-
-    slack('test');
+    slack('test', 'mytest');
   }
 }
 
 // (string) $message - message to be passed to Slack
 // (string) $room - room in which to write the message, too
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack($message) {
+function slack($message, $room = "engineering", $icon = ":longbox:") {
+  $room = ($room) ? $room : "engineering";
   $data = "payload=" . json_encode(array(
+      "channel"       =>  "#{$room}",
       "text"          =>  $message,
+      "icon_emoji"    =>  $icon
     ));
 
   // You can get your webhook endpoint from your Slack settings
