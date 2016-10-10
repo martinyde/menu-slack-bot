@@ -61,7 +61,7 @@ curl_close($ch);
 # Decode the JSON array sent back by isitup.org
 $response_array = json_decode($ch_response,true);
 
-print_r($response_array);
+//print_r($response_array);
 
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
@@ -74,6 +74,7 @@ else {
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
+    print '-----test----';
     slack('test', 'mytest');
   }
 }
