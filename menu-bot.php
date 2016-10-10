@@ -39,14 +39,14 @@ if($token != 'XJYNcqdbgelpmZNFZxxLXGOV'){ #replace this with the token from your
 # You can keep this one, or update it to something that makes more sense for you
 //$user_agent = "IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)";
 $user_agent = "Dokk1-Menu/1.0 (Martinyde; https://github.com/martinyde/menu-slack-bot)";
-
+echo '1';
 # We're just taking the text exactly as it's typed by the user. If it's not a valid domain, isitup.org will respond with a `3`.
 # We want to get the JSON version back (you can also get plain text).
 $url_to_check = "http://dokk1.mikkelricky.dk/menu.json";
-
+echo '2';
 # Set up cURL 
 $ch = curl_init($url_to_check);
-
+echo $ch;
 # Set up options for cURL 
 # We want to get the value back from our query 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -60,7 +60,7 @@ curl_close($ch);
 
 # Decode the JSON array sent back by isitup.org
 $response_array = json_decode($ch_response,true);
-
+echo $response_array;
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
 # You can use any emoji that is available to your Slack team, including the custom ones.
