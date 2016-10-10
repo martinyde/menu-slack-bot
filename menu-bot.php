@@ -61,8 +61,6 @@ curl_close($ch);
 # Decode the JSON array sent back by isitup.org
 $response_array = json_decode($ch_response,true);
 
-print_r($response_array);
-
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
 # You can use any emoji that is available to your Slack team, including the custom ones.
@@ -83,6 +81,7 @@ else {
     $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://';
   }
 
+  print_r($fields);
   slack($fields, $daily_img);
 }
 
