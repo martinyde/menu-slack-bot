@@ -76,8 +76,7 @@ else {
     $day = date('D', $timestamp);
   }
 
-  print '-----test----';
-  slack('test', 'mytest');
+  slack('testing', 'mytest');
 }
 
 // (string) $message - message to be passed to Slack
@@ -86,7 +85,6 @@ else {
 function slack($message, $room = "engineering", $icon = ":longbox:") {
   $room = ($room) ? $room : "engineering";
   $data = "payload=" . json_encode(array(
-      "channel"       =>  "#{$room}",
       "text"          =>  $message,
       "icon_emoji"    =>  $icon
     ));
