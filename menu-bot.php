@@ -76,17 +76,15 @@ else {
     $day = date('D', $timestamp);
   }
 
-  slack('testing', 'mytest');
+  slack();
 }
 
 // (string) $message - message to be passed to Slack
-// (string) $room - room in which to write the message, too
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack($message, $room = "engineering", $icon = ":longbox:") {
-  $room = ($room) ? $room : "engineering";
+function slack() {
   $data = "payload=" . json_encode(array(
-      "text"          =>  $message,
-      "icon_emoji"    =>  $icon
+      "text"          =>  'Tank op på http://tankop5172.fazer.dk/',
+      "icon_emoji"    =>  ':knife_fork_plate:'
     ));
 
   // You can get your webhook endpoint from your Slack settings
@@ -96,8 +94,6 @@ function slack($message, $room = "engineering", $icon = ":longbox:") {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   $result = curl_exec($ch);
   curl_close($ch);
-
-  // Laravel-specific log writing method
-  // Log::info("Sent to Slack: " . $message, array('context' => 'Notifications'));
+  
   return $result;
 }
