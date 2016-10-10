@@ -61,7 +61,7 @@ curl_close($ch);
 # Decode the JSON array sent back by isitup.org
 $response_array = json_decode($ch_response,true);
 
-//print_r($response_array);
+print_r($response_array);
 
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
@@ -71,21 +71,60 @@ if($ch_response === FALSE){
   $reply = "Ironically, Dokk1-menu could not be reached.";
 }
 else {
+  $fields = array();
+
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
+    $fields[] = array(
+      'title' => $day,
+      'value' => 'test'
+    );
   }
 
-  slack();
+  slack($fields);
 }
 
 // (string) $message - message to be passed to Slack
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack() {
+function slack($fields) {
   $data = "payload=" . json_encode(array(
-      "text"          =>  'Tank op på http://tankop5172.fazer.dk/',
-      "icon_emoji"    =>  ':knife_fork_plate:'
+      'text'          =>  '*Ugens menu* -- Tank op på http://tankop5172.fazer.dk/',
+      'icon_emoji'    =>  ':knife_fork_plate:',
+      'username' => 'Dokk1 Kantinen',
+      'mrkdwn' => true,
+      'attachments' => array (
+        'fallback' => 'Ugens menu',
+        'color' => '#36a64f',
+      ),
+      'fields' => $fields,
     ));
+    /*
+    {
+          "fallback": "Required plain-text summary of the attachment.",
+            "color": "#36a64f",
+            "pretext": "Optional text that appears above the attachment block",
+            "author_name": "Bobby Tables",
+            "author_link": "http://flickr.com/bobby/",
+            "author_icon": "http://flickr.com/icons/bobby.jpg",
+            "title": "Slack API Documentation",
+            "title_link": "https://api.slack.com/",
+            "text": "Optional text that appears within the attachment",
+            "fields": [
+                {
+                  "title": "Priority",
+                    "value": "High",
+                    "short": false
+                }
+            ],
+            "image_url": "http://my-website.com/path/to/image.jpg",
+            "thumb_url": "http://example.com/path/to/thumb.png",
+            "footer": "Slack API",
+            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+            "ts": 123456789
+        }
+    ]*/
+
 
   // You can get your webhook endpoint from your Slack settings
   $ch = curl_init("https://hooks.slack.com/services/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");
@@ -94,6 +133,6 @@ function slack() {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
   $result = curl_exec($ch);
   curl_close($ch);
-  
+
   return $result;
 }
