@@ -70,12 +70,32 @@ if($ch_response === FALSE){
   # isitup.org could not be reached 
   $reply = "Ironically, Dokk1-menu could not be reached.";
 }
-else{
+else {
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
-    echo ':test*' . $day . ': ' . $value['name'] . '*';
+
+    slack('test');
   }
 }
 
-# Send the reply back to the user. 
+// (string) $message - message to be passed to Slack
+// (string) $room - room in which to write the message, too
+// (string) $icon - You can set up custom emoji icons to use with each message
+function slack($message) {
+  $data = "payload=" . json_encode(array(
+      "text"          =>  $message,
+    ));
+
+  // You can get your webhook endpoint from your Slack settings
+  $ch = curl_init("WEBHOOK ENDPOINT GOES HERE");
+  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $result = curl_exec($ch);
+  curl_close($ch);
+
+  // Laravel-specific log writing method
+  // Log::info("Sent to Slack: " . $message, array('context' => 'Notifications'));
+  return $result;
+}
