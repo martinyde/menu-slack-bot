@@ -82,7 +82,7 @@ else {
       'short' => false,
     );
 
-    if (date('Ymd') == date('Ymd', strtotime($timestamp))) {
+    if (date('Ymd') === date('Ymd', strtotime($timestamp))) {
       $daily_img = $value['images']['0'];
     }
   }
