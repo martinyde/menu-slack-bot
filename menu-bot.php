@@ -50,6 +50,8 @@ $ch = curl_init($url_to_check);
 # Set up options for cURL 
 # We want to get the value back from our query 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+# Send in our user agent string
+curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
 
 # Make the call and get the response 
 $ch_response = curl_exec($ch);
@@ -84,11 +86,7 @@ else {
     if ($current_time === date('Ymd', strtotime($timestamp))) {
       $daily_img = $value['images']['0'];
     }
-    print '|------|';
-    print date('Ymd', strtotime($timestamp));
   }
-
-  print '|||' . $current_time . '|||';
 
   slack($fields, $daily_img);
 }
