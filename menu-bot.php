@@ -75,7 +75,7 @@ else {
   $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
   $current_time = date('Ymd');
   foreach ($response_array as $key => $value) {
-    $timestamp = strtotime($value['date']);
+    $timestamp = $value['date'];
     $day = date('D', $timestamp);
     $fields[] = array(
       'title' => $day,
