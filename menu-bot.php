@@ -72,10 +72,10 @@ if($ch_response === FALSE){
 }
 else {
   $fields = array();
-  $current_day = date('D', time());
+  $current_day = date('w', time());
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
-    $day = date('D', $timestamp);
+    $day = date('w', $timestamp);
     $fields[] = array(
       'title' => $day,
       'value' => $value['name'] . ' ' . $value['details'],
