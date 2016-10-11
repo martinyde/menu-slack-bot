@@ -71,6 +71,7 @@ if($ch_response === FALSE){
   $reply = "Ironically, Dokk1-menu could not be reached.";
 }
 else {
+  $img_key = rand(0, 9);
   $fields = array();
   $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
   $current_time = date('Ymd');
@@ -84,7 +85,7 @@ else {
     );
 
     if ($current_time === date('Ymd', strtotime($timestamp))) {
-      $daily_img = $value['images']['0'];
+      $daily_img = $value['images'][$img_key];
     }
   }
 
