@@ -82,7 +82,7 @@ else {
       'short' => false,
     );
     print $day . '--';
-    $daily_img = ($day === $current_day) ? $value['images']['0'] : 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
+    $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
   }
 
   print 'LLL' . $daily_img . 'LLL';
@@ -92,7 +92,7 @@ else {
 
 // (string) $message - message to be passed to Slack
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack($fields, $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png') {
+function slack($fields, $daily_img) {
   $data = "payload=" . json_encode(array(
       'text'          =>  '*Ugens menu*',
       'icon_emoji'    =>  ':knife_fork_plate:',
