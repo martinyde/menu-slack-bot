@@ -87,7 +87,7 @@ else {
     $test = $value['images']['0'];
   }
 
-  print '--' . $test;
+  print '--' . $daily_img;
 
   slack($fields, $daily_img);
 }
