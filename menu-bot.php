@@ -72,19 +72,19 @@ if($ch_response === FALSE){
 }
 else {
   $fields = array();
-  $current_day = date('w', time());
   $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
-    $day = date('w', $timestamp);
+    $day = date('D', $timestamp);
     $fields[] = array(
       'title' => $day,
       'value' => $value['name'] . ' ' . $value['details'],
       'short' => false,
     );
-    $daily_img = ($day === $current_day) ? $value['images']['0'] : false;
 
-    $test = $value['images']['0'];
+    if (date('Ymd') == date('Ymd', strtotime($timestamp))) {
+      $daily_img = $value['images']['0'];
+    }
   }
 
   print '--' . $daily_img;
