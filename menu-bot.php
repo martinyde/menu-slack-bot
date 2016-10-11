@@ -61,7 +61,7 @@ curl_close($ch);
 # Decode the JSON array sent back by isitup.org
 $response_array = json_decode($ch_response,true);
 
-//print_r($response_array);
+print_r($response_array['']);
 
 # Build our response 
 # Note that we're using the text equivalent for an emoji at the start of each of the responses.
@@ -73,6 +73,8 @@ if($ch_response === FALSE){
 else {
   $fields = array();
   $current_day = date('w', time());
+  $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
+
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('w', $timestamp);
@@ -81,11 +83,12 @@ else {
       'value' => $value['name'] . ' ' . $value['details'],
       'short' => false,
     );
-    print '---' . $value['images']['0'] . '---';
-    $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
+    $daily_img = ($day == $current_day) ? $value['images']['0'];
+
+    $test = $value['images']['0'];
   }
 
-  print 'LLL' . $daily_img . 'LLL';
+  print '--' . $test;
 
   slack($fields, $daily_img);
 }
