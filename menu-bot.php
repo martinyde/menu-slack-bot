@@ -73,6 +73,7 @@ if($ch_response === FALSE){
 else {
   $fields = array();
   $daily_img = 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
+  $current_time = date('Ymd');
   foreach ($response_array as $key => $value) {
     $timestamp = strtotime($value['date']);
     $day = date('D', $timestamp);
@@ -82,12 +83,14 @@ else {
       'short' => false,
     );
 
-    if (date('Ymd') === date('Ymd', strtotime($timestamp))) {
+    if ($current_time === date('Ymd', strtotime($timestamp))) {
       $daily_img = $value['images']['0'];
     }
+    print '|------|';
+    print date('Ymd', strtotime($timestamp));
   }
 
-  print '--' . $daily_img;
+  print '|||' . $current_time . '|||';
 
   slack($fields, $daily_img);
 }
