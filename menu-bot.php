@@ -81,7 +81,7 @@ else {
       'value' => $value['name'] . ' ' . $value['details'],
       'short' => false,
     );
-    print '---' . $value['images']['0'];
+    print '---' . $value['images']['0'] . '---';
     $daily_img = ($day == $current_day) ? $value['images']['0'] : 'http://dokk1.dk/sites/all/themes/dokk/logo.png';
   }
 
