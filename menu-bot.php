@@ -25,9 +25,8 @@ USAGE
 
 # Grab some of the values from the slash command, create vars for post back to Slack
 $command = $_POST['command'];
-$text = $_POST['text'];
 $token = $_POST['token'];
-
+$channel = $_POST['channel_id'];
 print_r($_POST);
 
 # Check the token and make sure the request is from our team 
@@ -89,14 +88,15 @@ else {
     }
   }
 
-  slack($fields, $daily_img);
+  slack($fields, $daily_img, $channel);
 }
 
 // (string) $message - message to be passed to Slack
 // (string) $icon - You can set up custom emoji icons to use with each message
-function slack($fields, $daily_img) {
+function slack($fields, $daily_img, $channel) {
   $data = "payload=" . json_encode(array(
-      'text'          =>  '*Ugens menu*',
+      'channel' => $channel,
+      'text' =>  '*Ugens menu*',
       'icon_emoji'    =>  ':knife_fork_plate:',
       'username' => 'Dokk1 Kantinen',
       'mrkdwn' => true,
