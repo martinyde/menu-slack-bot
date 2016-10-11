@@ -35,11 +35,6 @@ if($token != 'XJYNcqdbgelpmZNFZxxLXGOV'){ #replace this with the token from your
   echo $msg;
 }
 
-# isitup.org doesn't require you to use API keys, but they do require that any automated script send in a user agent string.
-# You can keep this one, or update it to something that makes more sense for you
-//$user_agent = "IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)";
-$user_agent = "Dokk1-Menu/1.0 (Martinyde; https://github.com/martinyde/menu-slack-bot)";
-
 # We're just taking the text exactly as it's typed by the user. If it's not a valid domain, isitup.org will respond with a `3`.
 # We want to get the JSON version back (you can also get plain text).
 $url_to_check = "http://dokk1.mikkelricky.dk/menu.json";
@@ -50,8 +45,6 @@ $ch = curl_init($url_to_check);
 # Set up options for cURL 
 # We want to get the value back from our query 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-# Send in our user agent string 
-curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
 
 # Make the call and get the response 
 $ch_response = curl_exec($ch);
@@ -86,11 +79,7 @@ else {
     if ($current_time === date('Ymd', strtotime($timestamp))) {
       $daily_img = $value['images']['0'];
     }
-    print '|------|';
-    print date('Ymd', strtotime($timestamp));
   }
-
-  print '|||' . $current_time . '|||';
 
   slack($fields, $daily_img);
 }
@@ -108,7 +97,7 @@ function slack($fields, $daily_img) {
         'fallback' => 'Ugens menu',
         'color' => '#36a64f',
         'fields' => $fields,
-        'thumb_url' => $daily_img,
+        'image_url' => $daily_img,
         'footer' => 'Tank op på http://tankop5172.fazer.dk/',
         'ts' => time(),
       )),
