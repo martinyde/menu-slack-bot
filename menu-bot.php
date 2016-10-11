@@ -82,7 +82,7 @@ else {
       'value' => $value['name'] . ' ' . $value['details'],
       'short' => false,
     );
-    $daily_img = ($day == $current_day) ? $value['images']['0'] : false;
+    $daily_img = ($day === $current_day) ? $value['images']['0'] : false;
 
     $test = $value['images']['0'];
   }
